@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  todo:
+    image: mysql:8.0
+    container_name: todo_container_kotlin
+    # コンテナ内のプロセスが異常終了（例: エラーによる終了）
+    # コンテナが正常に終了した場合
+    # Docker サービス/デーモンが再起動された場合（例: ホストマシンの再起動後）
+    # restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: todo
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin
+    ports:
+      - '3307:3307'
+    volumes:
+      - todo_data_kotlin:/var/lib/mysql
+      - ./mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+volumes:
+  todo_data_kotlin:

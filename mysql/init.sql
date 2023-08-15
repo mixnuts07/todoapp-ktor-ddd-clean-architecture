@@ -1,0 +1,7 @@
+CREATE TABLE todo (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(256) NOT NULL,
+    description VARCHAR(256)
+);
+
+INSERT INTO todo (title, description) VALUES ("TEST TODO", "THIS IS A SAMPLE TEST DATA")
