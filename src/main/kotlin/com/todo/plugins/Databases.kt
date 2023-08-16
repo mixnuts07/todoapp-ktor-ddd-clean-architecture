@@ -9,9 +9,10 @@ import org.jetbrains.exposed.sql.*
 
 fun Application.configureDatabases() {
     val database = Database.connect(
-            url = "jdbc:h2:mem:test;DB_CLOSE_DELAY=-1",
+            url = "jdbc:mysql://localhost:3307/todo",
             user = "admin",
             driver = "org.h2.Driver",
+//            driver = "com.mysql.cj.jdbc.Driver",
             password = "admin"
         )
     val todoService = TodoService(database)
