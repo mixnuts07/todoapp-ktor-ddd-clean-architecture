@@ -25,22 +25,22 @@ fun Application.configureDatabases() {
         // Read user
         get("/todos/{id}") {
             val id = call.parameters["id"]?.toInt() ?: throw IllegalArgumentException("Invalid ID")
-            val user = todoService.read(id)
-            if (user != null) {
-                call.respond(HttpStatusCode.OK, user)
+            val todo = todoService.read(id)
+            if (todo != null) {
+                call.respond(HttpStatusCode.OK, todo)
             } else {
                 call.respond(HttpStatusCode.NotFound)
             }
         }
         // Update user
-        put("/users/{id}") {
+        put("/todos/{id}") {
             val id = call.parameters["id"]?.toInt() ?: throw IllegalArgumentException("Invalid ID")
             val todo = call.receive<ExposedTodo>()
             todoService.update(id, todo)
             call.respond(HttpStatusCode.OK)
         }
         // Delete user
-        delete("/users/{id}") {
+        delete("/todos/{id}") {
             val id = call.parameters["id"]?.toInt() ?: throw IllegalArgumentException("Invalid ID")
             todoService.delete(id)
             call.respond(HttpStatusCode.OK)
