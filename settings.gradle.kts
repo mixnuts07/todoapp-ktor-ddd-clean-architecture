@@ -1,1 +1,7 @@
-rootProject.name = "com.example.todoapp-kotlin-ktor-ddd-clearnarch"
+rootProject.name = "root"
+
+include("rest")
+include("usecase")
+include("domain")
+include("gateway")
+include("driver")
