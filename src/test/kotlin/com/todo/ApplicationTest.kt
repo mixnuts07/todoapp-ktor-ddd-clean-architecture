@@ -1,6 +1,6 @@
 package com.todo
 
-import com.todo.plugins.*
+import com.todo.controller.configureRouting
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*

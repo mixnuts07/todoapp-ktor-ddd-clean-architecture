@@ -1,4 +1,4 @@
-package com.todo.plugins
+package com.todo.controller
 
 import io.ktor.server.application.*
 import io.ktor.server.routing.*

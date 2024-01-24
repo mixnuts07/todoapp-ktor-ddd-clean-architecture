@@ -1,27 +1,26 @@
-とりあえず 1 時間やった。React と Rust の todo アプリと Nest.js でドメインロジック作ったりしてから続きやる。
+### 説明
+Kotlin と Ktor で作る TODO アプリケーション。
+### 目的
+Kotlin, TDD, DDD, クリーンアーキテクチャの練習。
+### 技術
+- Kotlin
+- Ktor
+- Exposed
+- MySQL
+- docker compose
+- JUnit
+- Gauge (別レポジトリ)
 
-## 説明
+### 残りやること
+- ドメイン（id, title, description）
+- ユースケース
+- ゲートウェイ
+- ドライバー
+- [マルチモジュール構成にする](https://qiita.com/kasa_le/items/db0d84e3e868ff14bc2b)
+- README更新
+- ドメイン（）
 
-Kotlin と Ktor で作る簡易的な TODO アプリケーションです。
-
-DDD とクリーンアーキテクチャの練習で作りました。
-
-## 技術スタック
-
-Kotlin
-
-Ktor
-
-Exposed
-
-MySQL
-
-docker-compose
-
-JUnit
-
-## ディレクトリ構成
-
+### ディレクトリ構成
 ```
 src.main.kotlin.com/
 ├── todo/
@@ -50,7 +49,7 @@ infrastructure: インフラストラクチャ層を含む。データベース�
 database: データベース関連の実装を含む。
 ```
 
-## レイヤーの説明
+### レイヤーの説明
 
 ```
 Client → Controller → Service → Repository → DB
@@ -65,56 +64,45 @@ Repository...DBとのやり取りを行う層。実装ではORマッパーの `T
 
 ```
 
-## 機能（ユーザーストーリー）
-
+### ユーザーストーリー
 ```
 TODOを作成することができる(POST:/todo)
-TODOを1件取得することができる(GET:/todo/id)
 TODOを全件取得することができる(GET:/todo)
+TODOを1件取得することができる(GET:/todo/id)
 TODOを更新することができる(PUT:/todo/id)
 TODOを削除することができる(DELETE:/todo/id)
-TODOの状態を見ることができる
-TODOの優先度を見ることができる
+TODOの状態を見ることができる(GET:/todo/status)
+TODOの優先度を見ることができる(GET:/todo/priority)
 ```
+### サンプルリクエスト
 
-## サンプルリクエスト
-
-### TODO を全件取得する
-
+##### TODO を全件取得する
 ```
-curl "localhost:3000/todo"
+curl "localhost:8080/todo"
 ```
-
-### TODO を 1 件取得する
-
+##### TODO を 1 件取得する
 ```
-curl "localhost:3000/todo/1"
+curl "localhost:8080/todo/1"
 ```
-
-### TODO を 1 件作成する
-
+##### TODO を 1 件作成する
 ```
-curl -X POST 'http://localhost:3000/todo' \
+curl -X POST 'http://localhost:8080/todo' \
 -H 'Content-Type: application/json' \
 -d '{
   "title": "Your First Todo Title",
   "description": "Your First Todo Description"
 }'
 ```
-
-### TODO を 1 件更新する
-
+##### TODO を 1 件更新する
 ```
-curl -X PUT "localhost:3000/todo/1" \
+curl -X PUT "localhost:8080/todo/1" \
 -H "Content-Type: application/json" \
  -d '{
     "title": "update title",
     "description": "this is upated data"
 }'
 ```
-
-### TODO を 1 件削除する
-
+##### TODO を 1 件削除する
 ```
-curl -X DELETE "localhost:3000/todo/3"
+curl -X DELETE "localhost:8080/todo/3"
 ```

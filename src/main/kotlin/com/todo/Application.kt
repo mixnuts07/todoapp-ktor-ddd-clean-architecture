@@ -1,9 +1,10 @@
 package com.todo
 
-import com.todo.plugins.*
+import com.todo.controller.configureRouting
 import io.ktor.server.application.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
+import org.koin.core.Koin
 
 fun main() {
     embeddedServer(Netty, port = 8080, host = "0.0.0.0", module = Application::module)
@@ -11,7 +12,7 @@ fun main() {
 }
 
 fun Application.module() {
-    configureSerialization()
-    configureDatabases()
     configureRouting()
+//    configureSerialization()
+//    configureDatabases()
 }
